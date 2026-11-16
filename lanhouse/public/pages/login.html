@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar | Ping Lounge</title>
+  <meta name="theme-color" content="#0b1424">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="auth">
+    <aside class="auth__aside">
+      <a class="logo" href="/" aria-label="Ping Lounge, página inicial">
+        <img src="/images/favicon.svg" alt="" width="30" height="30">
+        <span>Ping <small>Lounge</small></span>
+      </a>
+      <div>
+        <h2>Sua máquina espera por você.</h2>
+        <p>Veja o que está livre hoje, escolha o horário e confirme. Sem fila e sem precisar ligar.</p>
+        <div class="live live--static" id="live" data-estado="carregando" role="status">
+          <span class="live__dot" aria-hidden="true"></span>
+          <span id="live-texto">Verificando máquinas livres</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="auth__main" id="conteudo">
+      <div class="auth__box">
+        <a class="logo auth__top" href="/" aria-label="Ping Lounge, página inicial">
+          <img src="/images/favicon.svg" alt="" width="30" height="30">
+          <span>Ping <small>Lounge</small></span>
+        </a>
+        <h1>Entrar na sua conta</h1>
+        <p class="sub">Acesse para ver o que está livre e reservar sua máquina.</p>
+
+        <form id="form-auth" data-form="login" novalidate>
+          <div id="alerta" aria-live="polite"></div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="voce@exemplo.com" required>
+            <p class="field-error" id="erro-email" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="senha">Senha</label>
+            <div class="input-wrap">
+              <input class="input" id="senha" name="senha" type="password" autocomplete="current-password" required>
+              <button class="icon-btn" type="button" data-alternar-senha aria-label="Mostrar senha" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#eye"/></svg></button>
+            </div>
+            <p class="field-error" id="erro-senha" role="alert"></p>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit">Entrar</button>
+        </form>
+
+        <p class="auth__alt">Ainda não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+        <a class="auth__voltar" href="/"><svg class="i" aria-hidden="true" style="transform:rotate(180deg)"><use href="/images/icons.svg#arrow-right"/></svg>Voltar ao início</a>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

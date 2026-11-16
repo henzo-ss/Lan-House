@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Estação de jogo com monitor, teclado, headset e gabinete com iluminação">
+  <defs>
+    <linearGradient id="parede" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c1830"/>
+      <stop offset="1" stop-color="#091221"/>
+    </linearGradient>
+    <linearGradient id="tela" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16315c"/>
+      <stop offset="1" stop-color="#0b1a33"/>
+    </linearGradient>
+    <linearGradient id="mesa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2d4b"/>
+      <stop offset="1" stop-color="#132036"/>
+    </linearGradient>
+    <radialGradient id="brilho-tela" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3f74d8" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#3f74d8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="brilho-led" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#c9ea4b" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#c9ea4b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="piso" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1a2f"/>
+      <stop offset="1" stop-color="#070d19"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo e parede -->
+  <rect width="1000" height="800" fill="url(#parede)"/>
+  <g stroke="#14243f" stroke-width="2">
+    <path d="M0 150H1000"/><path d="M0 210H1000"/>
+  </g>
+  <!-- Faixa de LED na parede (discreta) -->
+  <rect x="60" y="148" width="880" height="4" rx="2" fill="#c9ea4b" opacity="0.85"/>
+  <rect x="60" y="120" width="880" height="60" fill="url(#brilho-led)"/>
+
+  <!-- Estações ao fundo (desfocadas pela baixa opacidade) -->
+  <g opacity="0.45">
+    <rect x="30" y="330" width="210" height="130" rx="8" fill="#0e1b32" stroke="#223656" stroke-width="2"/>
+    <rect x="40" y="340" width="190" height="110" rx="3" fill="#13284a"/>
+    <path d="M40 420 70 395l30 18 35-30 45 37 50-26v56H40z" fill="#0d1d38"/>
+    <rect x="125" y="460" width="20" height="40" fill="#1a2c4b"/>
+    <rect x="95" y="498" width="80" height="8" rx="3" fill="#1a2c4b"/>
+    <rect x="760" y="330" width="210" height="130" rx="8" fill="#0e1b32" stroke="#223656" stroke-width="2"/>
+    <rect x="770" y="340" width="190" height="110" rx="3" fill="#13284a"/>
+    <path d="M770 425 805 398l32 20 36-32 42 36 45-22v53H770z" fill="#0d1d38"/>
+    <rect x="855" y="460" width="20" height="40" fill="#1a2c4b"/>
+    <rect x="825" y="498" width="80" height="8" rx="3" fill="#1a2c4b"/>
+  </g>
+  <path d="M0 520H1000V540H0z" fill="#101d34" opacity="0.8"/>
+
+  <!-- Piso -->
+  <rect x="0" y="650" width="1000" height="150" fill="url(#piso)"/>
+
+  <!-- Luz da tela sobre a mesa -->
+  <ellipse cx="500" cy="610" rx="300" ry="60" fill="url(#brilho-tela)"/>
+  <ellipse cx="500" cy="380" rx="320" ry="220" fill="url(#brilho-tela)" opacity="0.7"/>
+
+  <!-- Pernas da mesa -->
+  <rect x="150" y="640" width="14" height="130" fill="#0f1b30"/>
+  <rect x="836" y="640" width="14" height="130" fill="#0f1b30"/>
+
+  <!-- Tampo da mesa (em perspectiva) -->
+  <path d="M120 560H880L940 645H60z" fill="url(#mesa)"/>
+  <path d="M60 645H940V660H60z" fill="#0e1a2e"/>
+  <path d="M120 560H880" stroke="#2a4068" stroke-width="2"/>
+
+  <!-- Monitor -->
+  <rect x="488" y="500" width="24" height="52" fill="#16263f"/>
+  <path d="M430 552h140l12 10H418z" fill="#1a2d4c"/>
+  <rect x="290" y="230" width="420" height="275" rx="10" fill="#0d1a30" stroke="#2c436a" stroke-width="3"/>
+  <rect x="304" y="244" width="392" height="247" rx="4" fill="url(#tela)"/>
+  <!-- Cena do jogo (abstrata) -->
+  <circle cx="610" cy="330" r="34" fill="#c9ea4b" opacity="0.92"/>
+  <path d="M304 440 360 372l50 44 62-76 78 90 52-48 94 70v50H304z" fill="#112a52"/>
+  <path d="M304 462 380 410l60 34 70-52 80 58 106-40v59H304z" fill="#0c2040"/>
+  <!-- HUD -->
+  <rect x="322" y="260" width="110" height="8" rx="2" fill="#c9ea4b"/>
+  <rect x="322" y="276" width="76" height="6" rx="2" fill="#4b6ea8"/>
+  <rect x="624" y="438" width="58" height="42" rx="3" fill="none" stroke="#6f8fc4" stroke-width="2"/>
+  <path d="M653 450v18M644 459h18" stroke="#c9ea4b" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Gabinete com iluminação -->
+  <rect x="750" y="370" width="100" height="190" rx="8" fill="#0d192d" stroke="#2c436a" stroke-width="3"/>
+  <rect x="762" y="384" width="76" height="162" rx="4" fill="#0a1325"/>
+  <circle cx="800" cy="438" r="27" fill="none" stroke="#c9ea4b" stroke-width="3" opacity="0.9"/>
+  <circle cx="800" cy="438" r="9" fill="#13233f"/>
+  <circle cx="800" cy="504" r="27" fill="none" stroke="#c9ea4b" stroke-width="3" opacity="0.9"/>
+  <circle cx="800" cy="504" r="9" fill="#13233f"/>
+  <path d="M800 411v54M773 438h54M800 477v54M773 504h54" stroke="#22406b" stroke-width="2"/>
+  <rect x="768" y="396" width="3" height="138" rx="1.5" fill="#c9ea4b" opacity="0.7"/>
+
+  <!-- Headset no suporte -->
+  <rect x="236" y="480" width="8" height="82" rx="2" fill="#243a5e"/>
+  <rect x="216" y="556" width="48" height="8" rx="3" fill="#243a5e"/>
+  <path d="M214 482a26 26 0 0 1 52 0" fill="none" stroke="#3a5688" stroke-width="7" stroke-linecap="round"/>
+  <rect x="204" y="478" width="16" height="30" rx="6" fill="#1d3354"/>
+  <rect x="260" y="478" width="16" height="30" rx="6" fill="#1d3354"/>
+  <rect x="207" y="486" width="4" height="14" rx="2" fill="#c9ea4b" opacity="0.85"/>
+
+  <!-- Teclado, mousepad e mouse -->
+  <path d="M376 592h160l14 26H362z" fill="#0c172b" stroke="#25395c" stroke-width="2"/>
+  <g stroke="#2a4068" stroke-width="2" stroke-linecap="round">
+    <path d="M386 600h140M382 607h148M378 614h156"/>
+  </g>
+  <path d="M572 590h100l14 32H556z" fill="#0f1c33"/>
+  <rect x="610" y="598" width="22" height="30" rx="10" fill="#1b2f50" stroke="#2f4a77" stroke-width="2"/>
+  <path d="M621 600v10" stroke="#c9ea4b" stroke-width="2" stroke-linecap="round"/>
+</svg>

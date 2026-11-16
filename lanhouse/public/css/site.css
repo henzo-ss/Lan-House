@@ -1,0 +1,865 @@
+/* =====================================================================
+   Site público e telas de login/cadastro
+   O elemento memorável do site é a "régua de horários" (hero): mostra o
+   funcionamento do dia e onde estamos agora. A mesma ideia reaparece na
+   linha do tempo do agendamento e na agenda do painel.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   Cabeçalho
+   --------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: rgba(11, 20, 36, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__in {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 32px;
+}
+
+.site-panel {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 6px 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: color 0.15s var(--ease);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+}
+
+.site-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.site-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.user-chip__avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+}
+
+/* ---------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------- */
+.hero {
+  padding: 64px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.35rem, 4.6vw, 4.1rem);
+  margin-bottom: 24px;
+}
+
+.hero__lead {
+  max-width: 34rem;
+  font-size: 1.125rem;
+  color: var(--text-2);
+  margin-bottom: 32px;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.hero__cta .btn {
+  min-height: 50px;
+  padding: 0 26px;
+}
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+
+.hero__facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero__facts .i {
+  color: var(--accent);
+}
+
+.hero__media {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* Se existir public/images/hero.jpg, a foto cobre a ilustração; senão, a ilustração aparece. */
+  background: url("/images/hero.jpg") center / cover no-repeat, url("/images/hero-setup.svg") center / cover no-repeat,
+    var(--surface);
+}
+
+.live {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(11, 20, 36, 0.88);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-s);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.live--static {
+  position: static;
+  align-self: flex-start;
+  margin-top: 28px;
+}
+
+.live__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+
+.live[data-estado="aberto"] .live__dot {
+  background: var(--accent);
+  animation: pulsar 1.8s ease-in-out infinite;
+}
+
+.live[data-estado="fechado"] .live__dot {
+  background: var(--busy);
+}
+
+/* Régua de horários */
+.ruler {
+  margin-top: 56px;
+  padding-bottom: 8px;
+}
+
+.ruler__head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin-bottom: 14px;
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+.ruler__day {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.ruler__track {
+  position: relative;
+  height: 54px;
+  border-top: 2px solid var(--line-2);
+}
+
+.ruler__past {
+  position: absolute;
+  left: 0;
+  top: -2px;
+  height: 2px;
+  background: var(--text-3);
+}
+
+.ruler__tick {
+  position: absolute;
+  top: -2px;
+  height: 14px;
+  border-left: 2px solid var(--line-2);
+}
+
+.ruler__tick.is-half {
+  height: 8px;
+  border-left-width: 1px;
+}
+
+.ruler__label {
+  position: absolute;
+  top: 20px;
+  transform: translateX(-50%);
+  font-size: 0.8125rem;
+  color: var(--text-3);
+}
+
+.ruler__label.is-first {
+  transform: none;
+}
+
+.ruler__label.is-last {
+  transform: translateX(-100%);
+}
+
+.ruler__now {
+  position: absolute;
+  top: -8px;
+  height: 26px;
+  border-left: 2px solid var(--accent);
+}
+
+.ruler__now span {
+  position: absolute;
+  left: 8px;
+  top: -4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ruler__now.is-end span {
+  left: auto;
+  right: 8px;
+}
+
+/* ---------------------------------------------------------------------
+   Seções
+   --------------------------------------------------------------------- */
+.section {
+  padding: 104px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: var(--header-h);
+}
+
+.section h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+}
+
+.section__lead {
+  margin-top: 18px;
+  max-width: 30rem;
+  color: var(--text-2);
+}
+
+/* Estrutura */
+.estrutura {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.estrutura__intro {
+  position: sticky;
+  top: calc(var(--header-h) + 40px);
+}
+
+.estrutura__intro .btn {
+  margin-top: 28px;
+}
+
+.spec {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spec th,
+.spec td {
+  padding: 18px 20px 18px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec thead th {
+  padding-top: 0;
+  font-size: 1.0625rem;
+  color: var(--text);
+  border-bottom: 2px solid var(--line-2);
+}
+
+.spec thead th span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.spec tbody th {
+  width: 26%;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--text-3);
+}
+
+.spec td {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.spec td.is-pro {
+  color: var(--accent);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.fact {
+  display: flex;
+  gap: 16px;
+  padding: 24px 24px 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.fact:nth-child(even) {
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+
+.fact .i {
+  margin-top: 3px;
+  color: var(--accent);
+}
+
+.fact h3 {
+  font-size: 1.0625rem;
+  margin-bottom: 4px;
+}
+
+.fact p {
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+/* Serviços (lista em linhas, não em cartões) */
+.servicos__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.servicos__head .section__lead {
+  margin-top: 0;
+}
+
+.servicos__lista {
+  border-top: 2px solid var(--line-2);
+}
+
+.servico {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 5fr) minmax(0, 6fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 28px 12px 28px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.2s var(--ease), padding 0.2s var(--ease);
+}
+
+.servico:hover {
+  background: rgba(255, 255, 255, 0.025);
+  padding-left: 12px;
+}
+
+.servico .i {
+  align-self: center;
+  color: var(--accent);
+  width: 1.6em;
+  height: 1.6em;
+}
+
+.servico h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 700;
+  font-stretch: 112%;
+}
+
+.servico p {
+  color: var(--text-2);
+  max-width: 34rem;
+}
+
+/* Como reservar: faixa de destaque (uso mais forte da cor da marca) */
+.como {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-bottom: 0;
+}
+
+.como h2 {
+  max-width: 40rem;
+  margin-bottom: 56px;
+}
+
+.como__passos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-bottom: 56px;
+  border-top: 2px solid var(--on-accent);
+}
+
+.passo {
+  padding: 24px 32px 0 0;
+}
+
+.passo + .passo {
+  padding-left: 32px;
+  border-left: 1px solid rgba(11, 18, 32, 0.28);
+}
+
+.passo__n {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 3rem;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1;
+}
+
+.passo h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.passo p {
+  max-width: 20rem;
+  color: rgba(11, 18, 32, 0.78);
+}
+
+.como .btn--dark {
+  min-height: 52px;
+  padding: 0 28px;
+}
+
+/* Contato */
+.contato {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 72px;
+}
+
+.contato__lista {
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+}
+
+.contato__item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contato__item .i {
+  margin-top: 3px;
+  color: var(--accent);
+}
+
+.contato__item dt {
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+.contato__item dd {
+  font-weight: 500;
+}
+
+.horario {
+  align-self: start;
+  padding: 36px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+
+.horario h3 {
+  margin-bottom: 18px;
+  color: var(--text-2);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.horario__valor {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.horario p {
+  color: var(--text-2);
+}
+
+.horario .horario__valor {
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------------
+   Rodapé
+   --------------------------------------------------------------------- */
+.site-footer {
+  padding: 48px 0;
+  background: var(--bg-2);
+}
+
+.site-footer__in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+.site-footer nav a:hover {
+  color: var(--text);
+}
+
+.site-footer__copy {
+  width: 100%;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+/* ---------------------------------------------------------------------
+   Login e cadastro
+   --------------------------------------------------------------------- */
+.auth {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.auth__aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px 56px 56px;
+  background: linear-gradient(180deg, rgba(11, 20, 36, 0.35), rgba(11, 20, 36, 0.92) 78%),
+    url("/images/hero.jpg") center / cover no-repeat, url("/images/hero-setup.svg") center / cover no-repeat, var(--bg-2);
+  border-right: 1px solid var(--line);
+}
+
+.auth__aside h2 {
+  max-width: 24rem;
+  margin-bottom: 18px;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+}
+
+.auth__aside p {
+  max-width: 26rem;
+  color: var(--text-2);
+}
+
+.auth__main {
+  display: grid;
+  align-content: center;
+  padding: 48px 32px;
+}
+
+.auth__box {
+  width: min(400px, 100%);
+  margin-inline: auto;
+}
+
+.auth__top {
+  display: none;
+  margin-bottom: 40px;
+}
+
+.auth__box h1 {
+  margin-bottom: 8px;
+  font-size: 2rem;
+  font-stretch: 118%;
+}
+
+.auth__box > .sub {
+  margin-bottom: 32px;
+  color: var(--text-2);
+}
+
+.auth__box .btn--primary {
+  margin-top: 28px;
+  min-height: 50px;
+}
+
+.auth__alt {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+
+.auth__alt a {
+  color: var(--text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--accent);
+}
+
+.auth__alt a:hover {
+  color: var(--accent);
+}
+
+.auth__voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+.auth__voltar:hover {
+  color: var(--text);
+}
+
+/* Página 404 */
+.erro404 {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  text-align: center;
+}
+
+.erro404 h1 {
+  margin: 28px 0 12px;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.erro404 p {
+  margin-bottom: 28px;
+  color: var(--text-2);
+}
+
+.erro404 .logo {
+  justify-self: center;
+}
+
+/* ---------------------------------------------------------------------
+   Responsivo
+   --------------------------------------------------------------------- */
+@media (max-width: 1000px) {
+  .hero__grid,
+  .estrutura,
+  .contato {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .estrutura__intro {
+    position: static;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .servicos__head {
+    display: block;
+  }
+
+  .servicos__head .section__lead {
+    margin-top: 16px;
+  }
+
+  .auth {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .auth__aside {
+    display: none;
+  }
+
+  .auth__top {
+    display: block;
+  }
+}
+
+@media (max-width: 860px) {
+  .menu-toggle {
+    display: inline-grid;
+  }
+
+  .site-panel {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 24px 28px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-panel.is-open {
+    display: flex;
+  }
+
+  .site-nav {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .site-nav a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-actions .btn {
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .servico {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 8px 16px;
+  }
+
+  .servico p {
+    grid-column: 2;
+  }
+
+  .como__passos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .passo,
+  .passo + .passo {
+    padding: 24px 0;
+    border-left: 0;
+  }
+
+  .passo + .passo {
+    border-top: 1px solid rgba(11, 18, 32, 0.28);
+  }
+
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fact:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .spec th,
+  .spec td {
+    padding-right: 12px;
+    font-size: 0.9375rem;
+  }
+
+  .spec tbody th {
+    width: 30%;
+  }
+
+  .ruler__label.is-alt {
+    display: none;
+  }
+
+  .horario {
+    padding: 24px;
+  }
+}

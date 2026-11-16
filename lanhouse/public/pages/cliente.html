@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agendar horário | Ping Lounge</title>
+  <meta name="theme-color" content="#0b1424">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/cliente.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container site-header__in">
+      <a class="logo" href="/" aria-label="Ping Lounge, página inicial">
+        <img src="/images/favicon.svg" alt="" width="30" height="30">
+        <span>Ping <small>Lounge</small></span>
+      </a>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="painel-menu" aria-label="Abrir menu">
+        <svg class="i" aria-hidden="true"><use href="/images/icons.svg#menu"/></svg>
+      </button>
+      <div class="site-panel" id="painel-menu">
+        <nav class="site-nav" aria-label="Área do cliente">
+          <a href="#agendar" data-aba="agendar">Agendar</a>
+          <a href="#reservas" data-aba="reservas">Minhas reservas</a>
+        </nav>
+        <div class="site-actions">
+          <span class="user-chip"><span class="user-chip__avatar" id="usuario-inicial" aria-hidden="true"></span><span id="usuario-nome"></span></span>
+          <button class="btn btn--ghost btn--sm" type="button" data-sair>
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#log-out"/></svg>Sair
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="app-main container">
+
+    <!-- ======================= AGENDAR ======================= -->
+    <section id="view-agendar" aria-labelledby="titulo-agendar">
+      <div class="page-head">
+        <h1 id="titulo-agendar">Agendar um horário</h1>
+        <p>Escolha o dia, a máquina e o horário. A reserva só vale depois de confirmada.</p>
+      </div>
+
+      <div class="booking">
+        <ol class="steps">
+          <li class="step" id="passo-data">
+            <span class="step__n" aria-hidden="true">1</span>
+            <div class="step__body">
+              <h2>Data</h2>
+              <div class="dates" id="datas" role="group" aria-label="Datas disponíveis"></div>
+            </div>
+          </li>
+          <li class="step is-locked" id="passo-pc">
+            <span class="step__n" aria-hidden="true">2</span>
+            <div class="step__body">
+              <h2>Computador</h2>
+              <div id="aviso-dia"></div>
+              <div class="pcs" id="pcs" role="group" aria-label="Computadores"></div>
+              <p class="legend">
+                <span><i class="sw sw--livre"></i>Livre</span>
+                <span><i class="sw sw--busy"></i>Já reservado</span>
+                <span><i class="sw sw--mine"></i>Sua reserva</span>
+              </p>
+            </div>
+          </li>
+          <li class="step is-locked" id="passo-hora">
+            <span class="step__n" aria-hidden="true">3</span>
+            <div class="step__body">
+              <h2>Horário de início</h2>
+              <div id="linha-tempo"></div>
+              <div class="times" id="horas" role="group" aria-label="Horários de início"></div>
+            </div>
+          </li>
+          <li class="step is-locked" id="passo-duracao">
+            <span class="step__n" aria-hidden="true">4</span>
+            <div class="step__body">
+              <h2>Duração</h2>
+              <div class="segs" id="duracoes" role="group" aria-label="Duração da reserva"></div>
+              <p class="hint" id="dica-duracao"></p>
+            </div>
+          </li>
+        </ol>
+
+        <aside class="summary" id="resumo" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <!-- ======================= MINHAS RESERVAS ======================= -->
+    <section id="view-reservas" aria-labelledby="titulo-reservas" hidden>
+      <div class="page-head page-head--row">
+        <div>
+          <h1 id="titulo-reservas">Minhas reservas</h1>
+          <p>Consulte os detalhes e cancele reservas futuras dentro do prazo.</p>
+        </div>
+        <a class="btn btn--primary" href="#agendar"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#plus"/></svg>Nova reserva</a>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Filtro de reservas">
+        <button type="button" role="tab" id="aba-proximas" data-filtro="proximas" aria-selected="true">Próximas <span class="tabs__n" id="n-proximas">0</span></button>
+        <button type="button" role="tab" id="aba-historico" data-filtro="historico" aria-selected="false">Histórico <span class="tabs__n" id="n-historico">0</span></button>
+      </div>
+      <div id="lista-reservas" role="tabpanel" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/js/cliente.js"></script>
+</body>
+</html>

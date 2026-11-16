@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ping Lounge | Reserve seu computador na lan house</title>
+  <meta name="description" content="Lan house com computadores de alto desempenho. Escolha o dia, a máquina e o horário e reserve pelo site.">
+  <meta name="theme-color" content="#0b1424">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container site-header__in">
+      <a class="logo" href="/" aria-label="Ping Lounge, página inicial">
+        <img src="/images/favicon.svg" alt="" width="30" height="30">
+        <span>Ping <small>Lounge</small></span>
+      </a>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="painel-menu" aria-label="Abrir menu">
+        <svg class="i" aria-hidden="true"><use href="/images/icons.svg#menu"/></svg>
+      </button>
+      <div class="site-panel" id="painel-menu">
+        <nav class="site-nav" aria-label="Principal">
+          <a href="#estrutura">Estrutura</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#como-reservar">Como reservar</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="site-actions">
+          <a class="btn btn--ghost btn--sm" href="/login" data-entrar>Entrar</a>
+          <a class="btn btn--primary btn--sm" href="/agendar">Agendar horário</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="container">
+        <div class="hero__grid">
+          <div>
+            <h1 id="titulo-hero">Reserve sua máquina antes de chegar.</h1>
+            <p class="hero__lead">Computadores com monitor de 165 Hz ou mais, fibra de 1 Gbps e atendimento no salão. Escolha o dia, a máquina e o horário em menos de um minuto.</p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="/agendar">Agendar horário</a>
+              <a class="btn btn--ghost" href="#estrutura">Ver estrutura</a>
+            </div>
+            <ul class="hero__facts">
+              <li><svg class="i" aria-hidden="true"><use href="/images/icons.svg#wifi"/></svg>Fibra de 1 Gbps</li>
+              <li><svg class="i" aria-hidden="true"><use href="/images/icons.svg#monitor"/></svg>Monitores de 165 a 240 Hz</li>
+              <li><svg class="i" aria-hidden="true"><use href="/images/icons.svg#snowflake"/></svg>Salão climatizado</li>
+            </ul>
+          </div>
+          <div class="hero__media" role="img" aria-label="Estação de jogo com monitor, teclado e gabinete iluminado">
+            <div class="live" id="live" data-estado="carregando" role="status">
+              <span class="live__dot" aria-hidden="true"></span>
+              <span id="live-texto">Verificando máquinas livres</span>
+            </div>
+          </div>
+        </div>
+        <div class="ruler" id="ruler"></div>
+      </div>
+    </section>
+
+    <section class="section" id="estrutura" aria-labelledby="titulo-estrutura">
+      <div class="container estrutura">
+        <div class="estrutura__intro">
+          <h2 id="titulo-estrutura">Máquinas prontas para jogo competitivo</h2>
+          <p class="section__lead">Duas configurações e as mesmas regras de reserva. Escolha a máquina que combina com o seu jogo.</p>
+          <a class="btn btn--ghost" href="/agendar">Ver horários livres</a>
+        </div>
+        <div>
+          <table class="spec">
+            <thead>
+              <tr>
+                <th scope="col"><span class="sr-only">Componente</span></th>
+                <th scope="col">Setup padrão<span>8 máquinas</span></th>
+                <th scope="col">Setup Pro<span>2 máquinas</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Processador</th><td>Ryzen 5 5600</td><td class="is-pro">Ryzen 7 7800X3D</td></tr>
+              <tr><th scope="row">Placa de vídeo</th><td>GeForce RTX 3060 12 GB</td><td class="is-pro">GeForce RTX 4070 Super</td></tr>
+              <tr><th scope="row">Memória</th><td>16 GB</td><td class="is-pro">32 GB</td></tr>
+              <tr><th scope="row">Monitor</th><td>24 polegadas, 165 Hz</td><td class="is-pro">27 polegadas, 240 Hz</td></tr>
+              <tr><th scope="row">Periféricos</th><td>Teclado mecânico, mouse gamer e headset</td><td class="is-pro">Teclado mecânico, mouse gamer e headset</td></tr>
+            </tbody>
+          </table>
+
+          <div class="facts">
+            <div class="fact">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#wifi"/></svg>
+              <div><h3>Fibra de 1 Gbps</h3><p>Conexão dedicada, com baixa latência para jogos online.</p></div>
+            </div>
+            <div class="fact">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#armchair"/></svg>
+              <div><h3>Cadeiras ergonômicas</h3><p>Ajuste de altura e apoio lombar para partidas longas.</p></div>
+            </div>
+            <div class="fact">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#snowflake"/></svg>
+              <div><h3>Salão climatizado</h3><p>Temperatura estável, mesmo nos horários de maior movimento.</p></div>
+            </div>
+            <div class="fact">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#zap"/></svg>
+              <div><h3>Energia estável</h3><p>Nobreak nas máquinas: uma queda de energia não derruba a sua partida.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicos" aria-labelledby="titulo-servicos">
+      <div class="container">
+        <div class="servicos__head">
+          <h2 id="titulo-servicos">O que você encontra na casa</h2>
+          <p class="section__lead">Além das máquinas, o básico para ficar o tempo que quiser.</p>
+        </div>
+        <ul class="servicos__lista">
+          <li class="servico">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#monitor"/></svg>
+            <h3>Computadores por hora</h3>
+            <p>Reserve de 1 a 4 horas, com horário marcado e a máquina garantida para você.</p>
+          </li>
+          <li class="servico">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#users"/></svg>
+            <h3>Jogue em grupo</h3>
+            <p>Cada pessoa reserva a sua máquina. Escolha computadores vizinhos para jogar lado a lado.</p>
+          </li>
+          <li class="servico">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#coffee"/></svg>
+            <h3>Lanchonete no balcão</h3>
+            <p>Salgados e bebidas para você não passar muito tempo longe da partida.</p>
+          </li>
+          <li class="servico">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#printer"/></svg>
+            <h3>Impressão e digitalização</h3>
+            <p>Imprima trabalhos e documentos ou digitalize na recepção.</p>
+          </li>
+          <li class="servico">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#wrench"/></svg>
+            <h3>Suporte técnico no salão</h3>
+            <p>Um atendente resolve problemas de máquina e conexão durante o seu horário.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section como" id="como-reservar" aria-labelledby="titulo-como">
+      <div class="container">
+        <h2 id="titulo-como">Garanta sua máquina em três passos.</h2>
+        <ol class="como__passos">
+          <li class="passo">
+            <span class="passo__n" aria-hidden="true">1</span>
+            <h3>Crie sua conta</h3>
+            <p>Nome, e-mail e senha. Leva menos de um minuto.</p>
+          </li>
+          <li class="passo">
+            <span class="passo__n" aria-hidden="true">2</span>
+            <h3>Escolha data, máquina e horário</h3>
+            <p>Veja o que está livre e defina por quanto tempo vai jogar.</p>
+          </li>
+          <li class="passo">
+            <span class="passo__n" aria-hidden="true">3</span>
+            <h3>Confirme e apareça</h3>
+            <p>Mudou de ideia? Cancele pela sua área até <span data-cancel-texto>1 hora</span> antes do início.</p>
+          </li>
+        </ol>
+        <a class="btn btn--dark" href="/cadastro">Criar minha conta</a>
+      </div>
+    </section>
+
+    <section class="section" id="contato" aria-labelledby="titulo-contato">
+      <div class="container contato">
+        <div>
+          <h2 id="titulo-contato">Venha jogar</h2>
+          <dl class="contato__lista">
+            <div class="contato__item">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#map-pin"/></svg>
+              <div><dt>Endereço</dt><dd>Rua das Palmeiras, 1200, Centro</dd></div>
+            </div>
+            <div class="contato__item">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#phone"/></svg>
+              <div><dt>Telefone e WhatsApp</dt><dd>(11) 3333-0142</dd></div>
+            </div>
+            <div class="contato__item">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#mail"/></svg>
+              <div><dt>E-mail</dt><dd>contato@pinglounge.com.br</dd></div>
+            </div>
+          </dl>
+        </div>
+        <div class="horario">
+          <h3>Horário de funcionamento</h3>
+          <p class="horario__valor">Todos os dias, das <span data-abre>10h</span> às <span data-fecha>23h</span></p>
+          <p>Reservas pelo site até <span data-dias>14</span> dias à frente. As máquinas livres também atendem quem chega sem reserva.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__in">
+      <a class="logo" href="/" aria-label="Ping Lounge, página inicial">
+        <img src="/images/favicon.svg" alt="" width="30" height="30">
+        <span>Ping <small>Lounge</small></span>
+      </a>
+      <nav aria-label="Rodapé">
+        <a href="#estrutura">Estrutura</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#contato">Contato</a>
+        <a href="/login">Entrar</a>
+      </nav>
+      <p class="site-footer__copy">© 2026 Ping Lounge. Projeto acadêmico do desafio AC4.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/home.js"></script>
+</body>
+</html>

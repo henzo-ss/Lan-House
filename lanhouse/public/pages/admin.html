@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel administrativo | Ping Lounge</title>
+  <meta name="theme-color" content="#0b1424">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <div class="admin">
+    <aside class="admin__side">
+      <div class="admin__brand">
+        <a class="logo" href="/" aria-label="Ping Lounge, página inicial">
+          <img src="/images/favicon.svg" alt="" width="30" height="30">
+          <span>Ping <small>Lounge</small></span>
+        </a>
+        <span class="admin__tag">Administração</span>
+      </div>
+
+      <nav class="admin__nav" aria-label="Painel administrativo">
+        <a href="#visao-geral" data-nav="visao-geral"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#layout"/></svg>Visão geral</a>
+        <a href="#clientes" data-nav="clientes"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#users"/></svg>Clientes</a>
+        <a href="#computadores" data-nav="computadores"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#monitor"/></svg>Computadores</a>
+        <a href="#agendamentos" data-nav="agendamentos"><svg class="i" aria-hidden="true"><use href="/images/icons.svg#calendar-check"/></svg>Agendamentos</a>
+      </nav>
+
+      <div class="admin__user">
+        <div class="admin__user-info">
+          <strong id="admin-nome">Administrador</strong>
+          <span id="admin-email"></span>
+        </div>
+        <button class="btn btn--ghost btn--sm" type="button" data-sair aria-label="Sair">
+          <svg class="i" aria-hidden="true"><use href="/images/icons.svg#log-out"/></svg><span>Sair</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin__main" id="conteudo">
+
+      <!-- ===================== VISÃO GERAL ===================== -->
+      <section data-view="visao-geral" aria-labelledby="t-visao">
+        <header class="view-head">
+          <div>
+            <h1 id="t-visao">Visão geral</h1>
+            <p id="data-hoje"></p>
+          </div>
+          <button class="btn btn--ghost btn--sm" type="button" id="atualizar-visao">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#refresh"/></svg>Atualizar
+          </button>
+        </header>
+
+        <div class="kpis" id="kpis" aria-live="polite"></div>
+
+        <div class="duo">
+          <section aria-labelledby="t-agenda">
+            <h2 class="h-sec" id="t-agenda">Agenda de hoje</h2>
+            <div id="agenda-hoje"></div>
+          </section>
+          <section aria-labelledby="t-salao">
+            <h2 class="h-sec" id="t-salao">Salão agora</h2>
+            <div class="salao" id="salao"></div>
+            <p class="legend">
+              <span><i class="sw sw--mine"></i>Livre</span>
+              <span><i class="sw sw--busy"></i>Em uso</span>
+              <span><i class="sw sw--warn"></i>Manutenção</span>
+              <span><i class="sw sw--off"></i>Desativado</span>
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== CLIENTES ===================== -->
+      <section data-view="clientes" aria-labelledby="t-clientes" hidden>
+        <header class="view-head">
+          <div>
+            <h1 id="t-clientes">Clientes</h1>
+            <p>Cadastre, edite e consulte os clientes da lan house.</p>
+          </div>
+          <button class="btn btn--primary" type="button" id="novo-cliente">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#plus"/></svg>Novo cliente
+          </button>
+        </header>
+        <div class="toolbar">
+          <div class="input-icon toolbar__busca">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#search"/></svg>
+            <input class="input" id="busca-clientes" type="search" placeholder="Buscar por nome ou e-mail" aria-label="Buscar clientes por nome ou e-mail" autocomplete="off">
+          </div>
+          <p class="toolbar__info" id="contagem-clientes" aria-live="polite"></p>
+        </div>
+        <div id="tabela-clientes"></div>
+      </section>
+
+      <!-- ===================== COMPUTADORES ===================== -->
+      <section data-view="computadores" aria-labelledby="t-computadores" hidden>
+        <header class="view-head">
+          <div>
+            <h1 id="t-computadores">Computadores</h1>
+            <p>Só computadores com status "Disponível" aceitam novas reservas.</p>
+          </div>
+          <button class="btn btn--primary" type="button" id="novo-computador">
+            <svg class="i" aria-hidden="true"><use href="/images/icons.svg#plus"/></svg>Novo computador
+          </button>
+        </header>
+        <div id="tabela-computadores"></div>
+      </section>
+
+      <!-- ===================== AGENDAMENTOS ===================== -->
+      <section data-view="agendamentos" aria-labelledby="t-agendamentos" hidden>
+        <header class="view-head">
+          <div>
+            <h1 id="t-agendamentos">Agendamentos</h1>
+            <p>Consulte por data, cliente ou status e cancele reservas quando necessário.</p>
+          </div>
+        </header>
+        <form class="toolbar toolbar--filtros" id="filtros-agendamentos" novalidate>
+          <div class="field">
+            <label for="filtro-data">Data</label>
+            <input class="input" type="date" id="filtro-data">
+          </div>
+          <div class="chips" role="group" aria-label="Atalhos de data">
+            <button type="button" class="btn btn--ghost btn--sm" data-atalho="hoje">Hoje</button>
+            <button type="button" class="btn btn--ghost btn--sm" data-atalho="amanha">Amanhã</button>
+            <button type="button" class="btn btn--ghost btn--sm" data-atalho="todas">Todas</button>
+          </div>
+          <div class="field field--grow">
+            <label for="filtro-busca">Cliente</label>
+            <div class="input-icon">
+              <svg class="i" aria-hidden="true"><use href="/images/icons.svg#search"/></svg>
+              <input class="input" type="search" id="filtro-busca" placeholder="Nome ou e-mail" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label for="filtro-status">Status</label>
+            <select class="input" id="filtro-status">
+              <option value="">Todos</option>
+              <option value="confirmado">Confirmado</option>
+              <option value="concluido">Concluído</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+        </form>
+        <p class="toolbar__info toolbar__info--linha" id="contagem-agendamentos" aria-live="polite"></p>
+        <div id="tabela-agendamentos"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>
